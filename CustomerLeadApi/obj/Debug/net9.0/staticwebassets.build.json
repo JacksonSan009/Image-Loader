@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "4qkURgNyNE7zpmUi3idvAxIwBxAjGZt+5ByYfJYKRGM=",
+  "Source": "CustomerLeadApi",
+  "BasePath": "_content/CustomerLeadApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
