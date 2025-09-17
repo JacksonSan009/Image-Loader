@@ -1,0 +1,51 @@
+<div class="gallery-container">
+  <h1>📸 Customer Image Gallery</h1>
+
+  <div class="form-section">
+    <input [(ngModel)]="customerId" placeholder="Enter Customer ID" class="input-text" />
+    <button (click)="loadImages()" class="btn primary">Load Images</button>
+  </div>
+
+  <div *ngIf="customer">
+    <h2>Customer Info</h2>
+    <p><strong>Name:</strong> {{ customer.name }}</p>
+    <p><strong>ID:</strong> {{ customer.id }}</p>
+  </div>
+
+  <div class="form-section">
+    <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" />
+    <button (click)="upload()" [disabled]="!selectedFiles.length || !customerId" class="btn upload-btn"
+      [class.glow]="selectedFiles.length > 0">
+      Upload Images
+    </button>
+  </div>
+
+  <!-- Preview selected images before upload -->
+  <div *ngIf="previewUrls.length > 0" class="preview-grid">
+    <div class="preview-card" *ngFor="let url of previewUrls; let i = index">
+      <img [src]="url" alt="Preview" />
+      <button class="remove-btn" (click)="removePreview(i)">✕</button>
+    </div>
+  </div>
+
+  <div *ngIf="images.length > 0" class="carousel">
+    <button (click)="prevImage()" [disabled]="images.length <= 1" class="carousel-btn" [class.glow]="images.length > 0">
+      <span>&#8592;</span>
+    </button>
+    <div class="carousel-image-wrapper">
+      <img [src]="'data:image/png;base64,' + images[currentImageIndex]?.base64Data" alt="Customer Image"
+        class="carousel-image" />
+      <div class="carousel-controls">
+        <button class="delete-btn" (click)="deleteImage()" *ngIf="images.length > 0">
+          <span class="delete-icon">🗑️</span> Delete
+        </button>
+        <div class="carousel-indicator">
+          Image {{ currentImageIndex + 1 }} of {{ images.length }}
+        </div>
+      </div>
+    </div>
+    <button (click)="nextImage()" [disabled]="images.length <= 1" class="carousel-btn" [class.glow]="images.length > 0">
+      <span>&#8594;</span>
+    </button>
+  </div>
+</div>
